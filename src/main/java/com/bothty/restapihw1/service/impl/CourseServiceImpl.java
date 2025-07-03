@@ -16,6 +16,18 @@ public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
 
     @Override
+    public List<CourseResponseDto> getAllCourse() {
+        return courseRepository.findAll().stream()
+                .map(course -> new CourseResponseDto(
+                        course.getId(),
+                        course.getCode(),
+                        course.getTitle(),
+                        course.getPrice(),
+                        course.getStatus()
+                )).toList();
+    }
+
+    @Override
     public List<CourseResponseDto> getCourses(Boolean status) {
         return courseRepository.findCourse(status).stream()
                 .map(course -> new CourseResponseDto(
@@ -53,7 +65,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseResponseDto getCourseById(String id) {
-        Course course = courseRepository.findByCode(id);
+        Course course = courseRepository.findById(id);
         return new CourseResponseDto(
                 course.getId(),
                 course.getCode(),
@@ -62,4 +74,5 @@ public class CourseServiceImpl implements CourseService {
                 course.getStatus()
         );
     }
+
 }

@@ -10,16 +10,16 @@ import java.util.stream.Collectors;
 public class CourseRepository implements Repository<Course, String>{
 
     private final List<Course> courses = new ArrayList<>(List.of(
-            new Course("C001", "CS101", "Intro to Programming", 99.99, true),
-            new Course("C002", "CS102", "Data Structures", 119.99, true),
-            new Course("C003", "CS103", "Algorithms", 129.99, false),
-            new Course("C004", "CS104", "Databases", 89.99, true),
-            new Course("C005", "CS105", "Web Development", 149.99, true),
-            new Course("C006", "CS106", "Mobile App Dev", 159.99, false),
-            new Course("C007", "CS107", "Software Engineering", 139.99, true),
-            new Course("C008", "CS108", "Cybersecurity Basics", 109.99, true),
-            new Course("C009", "CS109", "Machine Learning", 179.99, false),
-            new Course("C010", "CS110", "Cloud Computing", 189.99, true)
+            new Course("001", "CS101", "Intro to Programming", 99.99, true),
+            new Course("002", "CS102", "Data Structures", 119.99, true),
+            new Course("003", "CS103", "Algorithms", 129.99, false),
+            new Course("004", "CS104", "Databases", 89.99, true),
+            new Course("005", "CS105", "Web Development", 149.99, true),
+            new Course("006", "CS106", "Mobile App Dev", 159.99, false),
+            new Course("007", "CS107", "Software Engineering", 139.99, true),
+            new Course("008", "CS108", "Cybersecurity Basics", 109.99, true),
+            new Course("009", "CS109", "Machine Learning", 179.99, false),
+            new Course("010", "CS110", "Cloud Computing", 189.99, true)
     ));
 
     @Override
@@ -39,6 +39,10 @@ public class CourseRepository implements Repository<Course, String>{
 
     public Course findByCode(String code) {
         return courses.stream().filter(course -> course.getCode().equals(code)).findFirst().orElse(null);
+    }
+
+    public Course findById(String id){
+        return courses.stream().filter(course -> course.getId().equals(id)).findFirst().orElse(null);
     }
 
     public List<Course> findCourse(Boolean status) {
